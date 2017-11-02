@@ -1,5 +1,5 @@
 function StarService(){
-  var baseUrl = 'https://swapi.co/api/people/'
+  var baseUrl = 'https://swapi.co/api/'
   
   var starWarsCharacters = [];
   var myCharacters = [];
@@ -11,11 +11,21 @@ function StarService(){
   
   this.getMyCharacters = function(){
     //what should this function return
+    starWarsCharacters = myCharacters
+    return myCharacters
   }
   
-  this.addToMyCharacters = function(id){
+  this.addToMyCharacters = function(name){
+    for (var i=0; i<starWarsCharacters.length; i++){
+      var character = starWarsCharacters[i]
+      if(character.name == name){
+        myCharacters.push(character)
+      }
+    }
+    console.log(myCharacters)
     //in order to add a character to your list you will first need to find 
     //the character by its id in the marvelCharacters array
+
   }
   
   this.removeMyCharacter = function(id){
@@ -26,7 +36,7 @@ function StarService(){
   
   this.getCharacters = function(callWhenDone){
     //Use &offset=Number to add pagination
-    $.get(baseUrl, function(response){
+    $.get(baseUrl + 'people', function(response){
       starWarsCharacters = response.results;
       callWhenDone(starWarsCharacters)
     })
