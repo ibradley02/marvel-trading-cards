@@ -1,12 +1,11 @@
-function MarvelService(){
-  var key = '?apikey=e44062bbc76b37176b08325d5265a0f3';
-  var baseUrl = 'http://gateway.marvel.com/v1/public/'
+function StarService(){
+  var baseUrl = 'https://swapi.co/api/people/'
   
-  var marvelCharacters = [];
+  var starWarsCharacters = [];
   var myCharacters = [];
   
   
-  this.getMarvelCharacters = function(){
+  this.getStarWarsCharacters = function(){
     //what should this function return
   }
   
@@ -27,9 +26,9 @@ function MarvelService(){
   
   this.getCharacters = function(callWhenDone){
     //Use &offset=Number to add pagination
-    $.get(baseUrl + 'characters'+key, function(response){
-      marvelCharacters = response.data.results;
-      callWhenDone(marvelCharacters)
+    $.get(baseUrl, function(response){
+      starWarsCharacters = response.results;
+      callWhenDone(starWarsCharacters)
     })
   }
   
